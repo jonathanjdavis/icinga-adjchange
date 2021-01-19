@@ -1,0 +1,3 @@
+icinga_user = 'myicingauser'
+icinga_pass = 'myicingapass'
+icinga_host = 'myicingaapiurl'
