@@ -3,14 +3,15 @@
 from config import icinga_user
 from config import icinga_pass
 from config import icinga_host
+from config import icinga_time_period
+from config import icinga_changes_crit
+from config import icinga_changes_warn
 
 import sys
 import requests
 import json
 import datetime
-# import os.path
 from os import path
-
 
 # pip3 install urllib3[secure]
 import urllib3
@@ -19,20 +20,6 @@ urllib3.disable_warnings()
 
 # settings for script
 f_log = open('adjchange.log', 'a')
-
-# time in seconds
-time_period = 600
-# number of changes per time_period for a critical status
-changes_crit = 2
-# number of changes for time_period a warning status
-changes_warn = 1
-
-# if (len(sys.argv) == 6):
-#     print("Yo")
-# else:
-#     print("no")
-
-# quit()
 
 # EXEC ./AdjStateChange.py $r $1 $2 $3 $4
 # hostname ($r)
@@ -110,10 +97,10 @@ else:
         lines = f.readlines()
     
     if(adj_state in adj_state_valid):
-        if(IcingaStatus(lines, time_period, date_str_now, changes_crit)):
+        if(IcingaStatus(lines, icinga_time_period, date_str_now, icinga_changes_crit)):
             data['exit_status'] = 2
 
-        elif(IcingaStatus(lines, time_period, date_str_now, changes_warn)): 
+        elif(IcingaStatus(lines, icinga_time_period, date_str_now, icinga_changes_warn)): 
             data['exit_status'] = 1
         
         else:

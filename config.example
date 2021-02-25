@@ -1,3 +1,10 @@
 icinga_user = 'myicingauser'
 icinga_pass = 'myicingapass'
 icinga_host = 'myicingaapiurl'
+
+# time in seconds
+icinga_time_period = 600
+# number of changes per time_period for a critical status
+icinga_changes_crit = 2
+# number of changes for time_period a warning status
+icinga_changes_warn = 1
